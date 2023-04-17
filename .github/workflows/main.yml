@@ -36,9 +36,7 @@ jobs:
           port: ${{ secrets.PORT }}
           connect_timeout: 10s
           script: |
-            pkill -f *.jar
-            sleep 10
-            rm -rf /tmp/oauth2.jar
+            sh ~/predeploy.sh
             
       - name: Transfer file to remote server
         uses: appleboy/scp-action@v0.1.4
@@ -59,7 +57,4 @@ jobs:
           port: ${{ secrets.PORT }}
           connect_timeout: 10s
           script: |
-            cd /tmp/build/libs
-            nohup java -jar -DPASSWORD=${{ secrets.PASSWORD }} oauth2*.jar &
-            sleep 10
-            cat nohup.out
+            sh ~/deploy.sh
