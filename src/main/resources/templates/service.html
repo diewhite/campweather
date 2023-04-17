@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width-device-width, initial-scale-1.0">
+<title>Service Page</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+	<div class="container">
+		<div class="welcome">
+			<span>Welcome! </span><span th:text="${id}"></span>
+		</div>
+		<div class="logout">
+		Logout
+			<a th:href="@{/logout}"><span class="material-symbols-rounded">logout</span></a>
+		</div>
+		
+		<div class="search-box">
+			<span class="material-symbols-rounded">location_on</span>
+			<input type="text" placeholder="도로명 주소로 검색" id="addr" required autofocus>
+			<button>
+			<span class="material-symbols-rounded">search</span>
+			</button>
+		</div>
+		
+		<div class="not-found">
+			<img alt="error" src="images/error.jpg">
+		</div>
+		
+		<div class="weather-box">
+			<img alt="" src="">
+			<p class="temperature"></p>
+			<p class="description"></p>
+		</div>
+			
+		<div class="weather-details">
+			<div class="humidity">
+				<i><span class="material-symbols-rounded">humidity_percentage</span></i>
+					<div class="text">
+						<span></span>
+						<p>Humidity</p>
+					</div>
+			</div>
+			<div class="wind">
+				<i><span class="material-symbols-rounded">wind_power</span></i>
+					<div class="text">
+						<span></span>
+						<p>Wind Speed</p>
+					</div>
+			</div>
+		</div>
+		
+		<div class="table-wrapper">
+			<div class="legend">
+				<div class="legend-days">
+					<span class="legend-left"></span>
+					<span class="legend-right"></span>
+				</div>
+				<div class="legend-hours">
+					<span class="legend-left">시간</span>
+					<span class="legend-right"></span>
+				</div>
+				<div class="legend-temp">
+					<span class="legend-left">기온(℃)</span>
+					<span class="legend-right"></span>
+				</div>
+				<div class="legend-rain">
+					<span class="legend-left">비(mm)</span>
+					<span class="legend-right"></span>
+				</div>
+				<div class="legend-wind">
+					<span class="legend-left">바람(m/s)</span>
+					<span class="legend-right"></span>
+				</div>
+				<div class="legend-windDir">
+					<span class="legend-left">풍향(deg)</span>
+					<span class="legend-right"></span>
+				</div>
+			</div>
+			<div class="data-table">
+				<table id="detail-data-table" class="grab">
+					<tbody>
+						<tr class="td-days"></tr>
+						<tr class="time"></tr>
+						<tr class="tmp"></tr>
+						<tr class="pcp"></tr>
+						<tr class="wsd"></tr>
+						<tr class="vec"></tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+			<div class="service-card-footer">
+				<p>By GMK</p>
+			</div>
+	</div>
+</body>
+<script type="text/javascript" src="/js/index.js"></script>
+</html>
