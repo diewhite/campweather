@@ -1,0 +1,48 @@
+name: CI / CD (NaverCloud)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup-java(temurin)
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 11
+        
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+    
+      - name: Execute Gradle build
+        run: ./gradlew bootJar -PPASSWORD=${{ secerets.PASSWORD }}
+        
+      - name: ssh pipelines
+        uses: cross-the-world/ssh-pipeline@master
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          pass: ${{ secrets.PASS }}
+          port: ${{ secrets.PORT }}
+          connect_timeout: 10s
+          script: |
+            pkill -f oauth2.jar
+            sleep 5
+            rm -rf /tmp/oauth2.jar
+            
+      - name: Transfer file to remote server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASS }}
+          port: ${{ secrets.PORT }}
+          source: "./build/libs/*.jar"
+          target: "/tmp/app.jar"
