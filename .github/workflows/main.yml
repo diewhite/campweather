@@ -22,7 +22,9 @@ jobs:
         uses: gradle/gradle-build-action@v2
     
       - name: Execute Gradle build
-        run: ./gradlew bootJar -PPASSWORD=${{ secrets.PASSWORD }}
+        run: |
+          sudo chmod +x
+          ./gradlew bootJar -PPASSWORD=${{ secrets.PASSWORD }}
         
       - name: ssh pipelines
         uses: cross-the-world/ssh-pipeline@master
