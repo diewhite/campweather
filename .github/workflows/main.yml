@@ -57,4 +57,5 @@ jobs:
           port: ${{ secrets.PORT }}
           connect_timeout: 10s
           script: |
+            export PASSWORD=${{ secrets.PASSWORD }}
             sh ~/deploy.sh
