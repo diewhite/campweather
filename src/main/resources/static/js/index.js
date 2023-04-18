@@ -187,7 +187,7 @@ button.addEventListener('click', () => {
 				document.querySelector('.weather-box').style.opacity="1";
 				document.querySelector('.weather-details').style.scale="1";
 				document.querySelector('.weather-details').style.opacity="1";
-				container.style.height = "960px";
+				container.style.height = "1000px";
 			})
 			.catch(() =>{														//찾을 수 없는 주소인 경우 not found display
 				document.querySelector('.weather-box').style.scale="0";
